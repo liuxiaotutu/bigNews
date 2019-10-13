@@ -1,0 +1,33 @@
+var user={
+    login:function(opction){
+        $.ajax({
+            type:'post',
+            url:URL_LOGIN,
+            data:opction.data,
+            success:opction.callback
+        });
+    },
+    logout:function(opction){
+        $.ajax({
+            type:'post',
+            url:URL_INDEX,
+            success:opction.callback
+        })
+    },
+    logIof:function(opction){
+        $.ajax({
+            url:URL_HUOQV,
+            success:opction.callback
+        })
+    },
+    loggaib:function(opction){
+        $.ajax({
+            type:'post',
+            url:URL_TIJISO,
+            data:opction.data,
+            contentType:false,
+            processData: false,
+            success:opction.callback
+        })
+    }
+}
