@@ -99,7 +99,7 @@
                 class="form-control"
                 id="rich_content"
                 placeholder="文章内容"
-              name="content">
+              >
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda fugiat illo nihil molestias ab. Laborum eius non atque, totam sapiente quae obcaecati assumenda ratione inventore pariatur maiores, qui libero delectus.
                             </textarea
               >
@@ -203,7 +203,8 @@
       })
       $('.btn-publish').on('click',function(){
         var data=new FormData($('form')[0]);
-        // data.append('content', tinyMCE.activeEditor.getContent())
+        data.append('content', tinyMCE.activeEditor.getContent())
+        console.log(tinyMCE.activeEditor.getContent())
           data.append('state', '已发布')
         $.ajax({
           type:'post',

@@ -57,7 +57,7 @@
 
     <div class="main_con clearfix">
       <div class="left_con setfr">
-        <div class="breadcrumb">
+        <!-- <div class="breadcrumb">
           当前位置： <a href="#">首页</a> &gt; <a href="#">科技</a> &gt;
           文章详情
         </div>
@@ -87,7 +87,7 @@
           <p>
             2016年，Neuralink在美国加利福尼亚州以医学研究公司的名义成立，之后一直低调运行。
           </p>
-        </div>
+        </div> -->
         <div class="article_links">
           上一篇： <a href="#">世界第一台可以玩游戏的冰箱</a><br />
           下一篇：
@@ -244,5 +244,41 @@
     <script src="./js/jquery-1.12.4.min.js"></script>
     <!-- 导入模板引擎 -->
     <script src="./js/template-web.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script >
+      var id=location.search.split('=')[1];
+      // console.log(id)
+      axios({
+        method:'get',
+        url:'http://localhost:8000/admin/search',
+        params:{
+          id:id
+        }
+      }).then(function(res){
+        console.log(res.data)
+        if(res.data.code===200){
+          var str=`
+          <div class="breadcrumb">
+          当前位置： <a href="#">首页</a> &gt; <a href="#">科技</a> &gt;
+          文章详情
+        </div>
+        <h3 class="article_title">
+          ${res.data.data.title}
+        </h3>
+        <div class="article_info">
+          杰克 发布于 ${res.data.data.date}&nbsp;&nbsp;&nbsp;分类:
+          ${res.data.data.type}&nbsp;&nbsp;&nbsp;阅读: (98)&nbsp;&nbsp;&nbsp;评论: (0)
+        </div>
+        <div class="article_con">
+          ${res.data.data.content}
+        </div>
+          `
+          console.log(str)
+          // document.querySelector('.left_con').innerHTML(str)
+          $('.left_con').prepend(str);
+        }
+      })
+    </script>
   </body>
 </html>
